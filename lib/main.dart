@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 
 void main() {
   runApp(const AppWid());
@@ -21,6 +22,7 @@ class AppWid extends StatelessWidget {
 
 Widget businessCardApp() {
   return Column(
+    mainAxisAlignment: MainAxisAlignment.center,
     children: [
       CircleAvatar(
         radius: 64,
@@ -41,31 +43,50 @@ Widget businessCardApp() {
       Text(
         'FLUTTER DEVELOPER',
         style: TextStyle(
-          color: Colors.white,
+          color: Colors.grey,
           fontWeight: FontWeight.bold,
           fontSize: 14.0,
         ),
       ),
+      Divider(
+        height: 10,
+        color: Colors.grey,
+        indent: 40.0,
+        endIndent: 40.0,
+      ),
       Container(
-          margin: EdgeInsets.symmetric(horizontal: 8.0,vertical: 8.0),
-          padding: EdgeInsets.all(8.0),
+          margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+          padding: EdgeInsets.all(16.0),
           decoration: BoxDecoration(
               color: Colors.white, borderRadius: BorderRadius.circular(8.0)),
           child: const Row(
             children: [
-              Icon(Icons.call),
+              Padding(
+                padding: EdgeInsets.only(right: 24),
+                child: Icon(Icons.call),
+              ),
               Text('(+01) 203883782'),
             ],
           )),
       Container(
-        margin: EdgeInsets.symmetric(horizontal: 8.0,vertical: 8.0),
-        padding: EdgeInsets.all(8.0),
+        margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+        padding: EdgeInsets.all(16.0),
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(8.0)),
         child: Row(
           children: [
-            Icon(Icons.email),
-            Text('ScholarTech@gmail.com'),
+            Padding(
+              padding: EdgeInsets.only(right: 24.0),
+              child: Icon(
+                Icons.email,
+                size: 24,
+                color: Color(0xFF2B455F),
+              ),
+            ),
+            Text(
+              'ScholarTech@gmail.com',
+              style: TextStyle(fontSize: 14),
+            ),
           ],
         ),
       )
