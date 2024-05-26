@@ -11,9 +11,10 @@ class BasketBallCounterApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: HomeScreen()
+    return BlocProvider(
+      create: (context) => CounterCubit(),
+      child: const MaterialApp(
+          debugShowCheckedModeBanner: false, home: HomeScreen()),
     );
   }
 }
@@ -47,13 +48,13 @@ class HomeScreen extends StatelessWidget {
                           style: TextStyle(fontSize: 30, color: Colors.black),
                         ),
                         Text(
-                          '$teamAPoints',
+                          '${state.teamAPoints}',
                           style: const TextStyle(
                               fontSize: 80, color: Colors.black),
                         ),
                         ElevatedButton(
                             onPressed: () {
-
+                              BlocProvider.of<CounterCubit>(context).incrementTeamA(1);
                             },
                             style: ElevatedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
@@ -66,9 +67,7 @@ class HomeScreen extends StatelessWidget {
                         const SizedBox(height: 8),
                         ElevatedButton(
                             onPressed: () {
-                              setState(() {
-                                teamAPoints += 2;
-                              });
+                              BlocProvider.of<CounterCubit>(context).incrementTeamA(2);
                             },
                             style: ElevatedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
@@ -81,9 +80,7 @@ class HomeScreen extends StatelessWidget {
                         const SizedBox(height: 8),
                         ElevatedButton(
                             onPressed: () {
-                              setState(() {
-                                teamAPoints += 3;
-                              });
+                              BlocProvider.of<CounterCubit>(context).incrementTeamA(3);
                             },
                             style: ElevatedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
@@ -109,15 +106,13 @@ class HomeScreen extends StatelessWidget {
                           style: TextStyle(fontSize: 30, color: Colors.black),
                         ),
                         Text(
-                          '$teamBPoints',
+                          '${state.teamBPoints}',
                           style: const TextStyle(
                               fontSize: 80, color: Colors.black),
                         ),
                         ElevatedButton(
                             onPressed: () {
-                              setState(() {
-                                teamBPoints++;
-                              });
+                              BlocProvider.of<CounterCubit>(context).incrementTeamB(1);
                             },
                             style: ElevatedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
@@ -130,9 +125,7 @@ class HomeScreen extends StatelessWidget {
                         const SizedBox(height: 8),
                         ElevatedButton(
                             onPressed: () {
-                              setState(() {
-                                teamBPoints += 2;
-                              });
+                              BlocProvider.of<CounterCubit>(context).incrementTeamB(2);
                             },
                             style: ElevatedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
@@ -145,9 +138,7 @@ class HomeScreen extends StatelessWidget {
                         const SizedBox(height: 8),
                         ElevatedButton(
                             onPressed: () {
-                              setState(() {
-                                teamBPoints += 3;
-                              });
+                              BlocProvider.of<CounterCubit>(context).incrementTeamB(3);
                             },
                             style: ElevatedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
@@ -164,17 +155,14 @@ class HomeScreen extends StatelessWidget {
                 const Spacer(flex: 1),
                 ElevatedButton(
                   onPressed: () {
-                    setState(() {
-                      teamAPoints = 0;
-                      teamBPoints = 0;
-                    });
+                    BlocProvider.of<CounterCubit>(context).reset();
                   },
                   style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8)),
                       backgroundColor: Colors.orange),
-                  child: const Text(
-                      'Reset', style: TextStyle(color: Colors.white)),
+                  child: const Text('Reset',
+                      style: TextStyle(color: Colors.white)),
                 ),
                 const Spacer(flex: 1)
               ],
